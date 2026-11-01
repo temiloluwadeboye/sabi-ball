@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+
+# Downloaded Wikipedia text (CC BY-SA; rebuilt with python -m src.download, see README)
+data/raw/*
+data/processed/*
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+
+# Editors / OS
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Secrets (Cohere API key)
+.env

@@ -1,0 +1,6 @@
+requests
+pytest
+beautifulsoup4
+# Added in later steps:
+# cohere           (steps 4-5: embed, rerank, chat)
+# streamlit        (step 7: the app)
