@@ -1,0 +1,247 @@
+{
+  "questions": [
+    {
+      "question": "Who won the 2015-16 Premier League?",
+      "level": "easy",
+      "vector_rank": 1,
+      "rerank_rank": 1
+    },
+    {
+      "question": "Who scored the winning goal in the 2014 World Cup final?",
+      "level": "easy",
+      "vector_rank": 1,
+      "rerank_rank": 1
+    },
+    {
+      "question": "Which club won the 2005 Champions League final in Istanbul?",
+      "level": "easy",
+      "vector_rank": 1,
+      "rerank_rank": 1
+    },
+    {
+      "question": "Which country won the first FIFA World Cup in 1930?",
+      "level": "easy",
+      "vector_rank": 1,
+      "rerank_rank": 1
+    },
+    {
+      "question": "Which country hosted Euro 2016?",
+      "level": "easy",
+      "vector_rank": 1,
+      "rerank_rank": 1
+    },
+    {
+      "question": "Who won the 2023-24 Bundesliga?",
+      "level": "easy",
+      "vector_rank": 1,
+      "rerank_rank": 1
+    },
+    {
+      "question": "Who won the first Ballon d'Or?",
+      "level": "easy",
+      "vector_rank": 1,
+      "rerank_rank": 1
+    },
+    {
+      "question": "Which club won La Liga in 2018-19?",
+      "level": "easy",
+      "vector_rank": 2,
+      "rerank_rank": 1
+    },
+    {
+      "question": "Who won the 2021 Copa America?",
+      "level": "easy",
+      "vector_rank": 1,
+      "rerank_rank": 1
+    },
+    {
+      "question": "Which country won the 2019 Africa Cup of Nations?",
+      "level": "easy",
+      "vector_rank": 1,
+      "rerank_rank": 1
+    },
+    {
+      "question": "Who won the women's football gold medal at the Tokyo 2020 Olympics?",
+      "level": "easy",
+      "vector_rank": 1,
+      "rerank_rank": 1
+    },
+    {
+      "question": "Who scored a hat-trick in the 1966 World Cup final?",
+      "level": "easy",
+      "vector_rank": 1,
+      "rerank_rank": 1
+    },
+    {
+      "question": "Which team won Serie A in 2010-11?",
+      "level": "easy",
+      "vector_rank": 1,
+      "rerank_rank": 1
+    },
+    {
+      "question": "Who won Ligue 1 in the 2016-17 season?",
+      "level": "easy",
+      "vector_rank": 1,
+      "rerank_rank": 1
+    },
+    {
+      "question": "When was Arsenal founded?",
+      "level": "easy",
+      "vector_rank": 1,
+      "rerank_rank": 1
+    },
+    {
+      "question": "What is the name of FC Barcelona's home stadium?",
+      "level": "easy",
+      "vector_rank": 1,
+      "rerank_rank": 1
+    },
+    {
+      "question": "Which country won the 1974 World Cup?",
+      "level": "easy",
+      "vector_rank": 1,
+      "rerank_rank": 1
+    },
+    {
+      "question": "Who won the 2022-23 Europa League?",
+      "level": "easy",
+      "vector_rank": 1,
+      "rerank_rank": 1
+    },
+    {
+      "question": "Who won the Golden Boot at the 2022 World Cup?",
+      "level": "easy",
+      "vector_rank": 1,
+      "rerank_rank": 1
+    },
+    {
+      "question": "Which countries will host the 2030 World Cup?",
+      "level": "easy",
+      "vector_rank": 1,
+      "rerank_rank": 1
+    },
+    {
+      "question": "Which club won the league after bookmakers gave them 5000-1 odds?",
+      "level": "hard",
+      "vector_rank": 1,
+      "rerank_rank": 1
+    },
+    {
+      "question": "Which English team was nicknamed The Invincibles?",
+      "level": "hard",
+      "vector_rank": 1,
+      "rerank_rank": 1
+    },
+    {
+      "question": "Who holds the record of 13 goals at a single World Cup?",
+      "level": "hard",
+      "vector_rank": 1,
+      "rerank_rank": 1
+    },
+    {
+      "question": "Which final is known as the Miracle of Istanbul?",
+      "level": "hard",
+      "vector_rank": 1,
+      "rerank_rank": 1
+    },
+    {
+      "question": "Which was the first German team to win the league without losing a game?",
+      "level": "hard",
+      "vector_rank": 3,
+      "rerank_rank": 1
+    },
+    {
+      "question": "Who was man of the match in the World Cup final played at the Maracana in 2014?",
+      "level": "hard",
+      "vector_rank": 1,
+      "rerank_rank": 1
+    },
+    {
+      "question": "In which tournament did Maradona score the Hand of God goal?",
+      "level": "hard",
+      "vector_rank": 1,
+      "rerank_rank": 1
+    },
+    {
+      "question": "Which country were surprise European champions in 2004?",
+      "level": "hard",
+      "vector_rank": 1,
+      "rerank_rank": 1
+    },
+    {
+      "question": "Who was the first winner of the women's Ballon d'Or?",
+      "level": "hard",
+      "vector_rank": 1,
+      "rerank_rank": 1
+    },
+    {
+      "question": "Which match became known as the Battle of Santiago?",
+      "level": "hard",
+      "vector_rank": 1,
+      "rerank_rank": 1
+    },
+    {
+      "question": "Which club is nicknamed the Old Lady?",
+      "level": "hard",
+      "vector_rank": 2,
+      "rerank_rank": 1
+    },
+    {
+      "question": "Which English club, managed by Brian Clough, won back-to-back European Cups?",
+      "level": "hard",
+      "vector_rank": 1,
+      "rerank_rank": 1
+    },
+    {
+      "question": "What was the Maracanazo?",
+      "level": "hard",
+      "vector_rank": 1,
+      "rerank_rank": 1
+    },
+    {
+      "question": "Which club is the only one to win three Champions League titles in a row twice?",
+      "level": "hard",
+      "vector_rank": 1,
+      "rerank_rank": 1
+    },
+    {
+      "question": "Who was named man of the match when Spain won their first World Cup final?",
+      "level": "hard",
+      "vector_rank": 1,
+      "rerank_rank": 1
+    }
+  ],
+  "easy": {
+    "count": 20,
+    "vector": {
+      "hit@k": 1.0,
+      "mrr": 0.975
+    },
+    "rerank": {
+      "hit@k": 1.0,
+      "mrr": 1.0
+    }
+  },
+  "hard": {
+    "count": 15,
+    "vector": {
+      "hit@k": 1.0,
+      "mrr": 0.922
+    },
+    "rerank": {
+      "hit@k": 1.0,
+      "mrr": 1.0
+    }
+  },
+  "all": {
+    "count": 35,
+    "vector": {
+      "hit@k": 1.0,
+      "mrr": 0.952
+    },
+    "rerank": {
+      "hit@k": 1.0,
+      "mrr": 1.0
+    }
+  }
+}
