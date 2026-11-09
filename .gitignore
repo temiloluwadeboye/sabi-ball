@@ -17,3 +17,9 @@ Thumbs.db
 
 # Secrets (Cohere API key)
 .env
+
+# Design working files (mockups, decision pages)
+.impeccable/
+
+# Claude Code local settings
+.claude/

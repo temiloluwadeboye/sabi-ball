@@ -1,43 +1,84 @@
-# Football Knowledge Assistant (RAG)
+# Sabi Ball ⚽
 
-Ask questions about European and international football and get answers with sources.
-Built on Wikipedia text and Cohere (embed, rerank, chat), checked with a 20-question retrieval test.
+**Ask about the beautiful game.** A football question-answering app that answers from Wikipedia and shows the sources behind every answer.
+
+*Sabi ball* is Nigerian Pidgin for "to know ball": to really know football.
+
+It is a retrieval-augmented generation (RAG) system: it searches 23,582 passages from 1,201 Wikipedia articles, picks the most relevant ones, and has a language model answer **only** from them. If the passages don't hold the answer, it says so instead of guessing.
 
 **Knowledge as of November 2026.** Answers about seasons still being played may be out of date.
 
 ## What it covers
 
 - **Leagues:** Premier League, La Liga, Serie A, Bundesliga, Ligue 1 (every season page plus current clubs)
-- **Club competitions:** UEFA Champions League, UEFA Europa League (seasons and finals)
-- **International:** FIFA World Cup, AFCON, Euros, Copa América, UEFA Nations League, football at the Olympics
-- **Awards:** Ballon d'Or, Kopa Trophy, FIFA Puskás Award
+- **Club competitions:** UEFA Champions League and Europa League (seasons and finals)
+- **International:** FIFA World Cup, Euros, AFCON, Copa América, UEFA Nations League, football at the Olympics
+- **Awards:** Ballon d'Or, Kopa Trophy, FIFA Puskás Award and others
 
-About 1,300 articles and about 2.2 million words.
+## How it works
 
-## How it works (plan)
+| Step | Script | What it does |
+|---|---|---|
+| 1 | `src/download.py` | Downloads each Wikipedia page once through the official API (resumable, polite rate limit) |
+| 2 | `src/clean.py` | Turns the HTML into plain text, split by section. **Tables become text lines** ("League table: Pos: 1; Team: Leicester City (C); Pld: 38; ... Pts: 81."), so league tables and winners lists can be searched |
+| 3 | `src/chunk.py` | Packs each section's lines into passages of up to 250 words (a very long line is split with a 40-word overlap). Each passage starts with its page and section title |
+| 4 | `src/embed.py` | Turns every passage into a 512-number vector with Cohere `embed-v4.0` (resumable batches, retries on rate limits) |
+| 5 | `src/ask.py` | Embeds the question → takes the 30 closest passages → Cohere `rerank-v3.5` keeps the best 5 → Cohere `command-a` answers from those 5 only |
+| 6 | `src/evaluate.py` | Scores the search on 35 questions with known answer pages, with and without the reranker |
+| 7 | `app/app.py` | The Streamlit app: question box, answer, and a Sources dropdown linking to each Wikipedia page |
 
-| Step | Script | What it does | Status |
+## Results
+
+Retrieval test on 35 questions (`eval/questions.jsonl`): 20 "easy" questions that name the page ("Who won the 2023-24 Bundesliga?") and 15 "hard" ones that don't ("Which final is known as the Miracle of Istanbul?").
+
+| Questions | Search | hit@5 | MRR |
 |---|---|---|---|
-| 1 | `src/download.py` | Download each Wikipedia page once (HTML) through the official API | in progress |
-| 2 | `src/clean.py` | Turn HTML into plain text **and turn tables into sentences** (league tables, winners lists) | |
-| 3 | `src/chunk.py` | Split text into ~300-word chunks, each tagged with its page and section | |
-| 4 | `src/embed.py` | Embed chunks with Cohere and save the index | |
-| 5 | `src/ask.py` | Question → find top chunks → Cohere rerank → Cohere chat answer with citations | |
-| 6 | `src/evaluate.py` | 20 hand-written questions with known answers: is the right page in the top 5? | |
-| 7 | `app/app.py` | Streamlit app | |
+| Easy (20) | vector only | 1.00 | 0.97 |
+| | + reranker | 1.00 | **1.00** |
+| Hard (15) | vector only | 1.00 | 0.92 |
+| | + reranker | 1.00 | **1.00** |
+| All (35) | vector only | 1.00 | 0.95 |
+| | + reranker | 1.00 | **1.00** |
+
+- **hit@5:** share of questions where a passage from the right page is in the top 5 (what the answer model sees).
+- **MRR (mean reciprocal rank):** 1 if the right page is ranked first, 0.5 if second, and so on, averaged.
+
+The reranker moved the right page to first place on the 3 questions where vector search had it 2nd or 3rd. Limits worth knowing: 35 questions is a small test, and a hit means the right *page* was found, not that the answer was checked word for word. Full results: `eval/results.json`.
 
 ## Run it
+
+You need Python 3.12 and a [Cohere API key](https://dashboard.cohere.com/api-keys) (the free trial key works, just slower).
 
 ```bash
 py -3.12 -m venv .venv
 .venv\Scripts\activate
 pip install -r requirements.txt
-python -m src.download     # step 1: about 1,300 pages, safe to stop and restart
-pytest
 ```
+
+Create a file called `.env` in the project folder with one line: `COHERE_API_KEY=your-key`. It is git-ignored, so the key never gets committed.
+
+Build the data (each step can be stopped and restarted):
+
+```bash
+python -m src.download     # about 1,200 pages
+python -m src.clean
+python -m src.chunk
+python -m src.embed        # about 250 batches; slow on a trial key because of rate limits
+```
+
+Then:
+
+```bash
+python -m src.ask "Who won the 2015-16 Premier League?"   # one question in the terminal
+python -m src.evaluate                                     # the 35-question test
+streamlit run app/app.py                                   # the app, at http://localhost:8501
+pytest                                                     # 59 tests, no API key needed
+```
+
+## Tests
+
+Every step has tests (`tests/`) that run without network access or an API key: Cohere is replaced by a small fake client, so the tests check the logic (batching, retries, ranking, scoring, HTML escaping) rather than Cohere itself.
 
 ## Data and licence
 
-Text comes from [English Wikipedia](https://en.wikipedia.org) under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
-The downloaded text is **not** stored in this repo; run `python -m src.download` to rebuild it.
-Every answer links back to the Wikipedia page it came from.
+Text comes from [English Wikipedia](https://en.wikipedia.org) under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). The downloaded text and the embeddings are **not** stored in this repo; the steps above rebuild them. Every source in the app links back to its Wikipedia page.
