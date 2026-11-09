@@ -107,8 +107,11 @@ STYLE = """
   font-size:21px; line-height:1.5; max-width:46em}
 .st-key-panel [data-testid="stExpander"] details{background:var(--field); border:1px solid var(--line);
   border-radius:12px}
-.st-key-panel [data-testid="stExpander"] summary{color:var(--chalk); padding:12px 16px}
-.st-key-panel [data-testid="stExpander"] summary:hover{color:var(--accent)}
+.st-key-panel [data-testid="stExpander"] summary{color:var(--chalk); padding:12px 16px;
+  background:var(--field) !important; border-radius:12px}
+.st-key-panel [data-testid="stExpander"] details[open] summary{border-radius:12px 12px 0 0}
+.st-key-panel [data-testid="stExpander"] summary:hover,
+.st-key-panel [data-testid="stExpander"] summary:focus-visible{background:#132a52 !important; color:var(--accent)}
 .st-key-panel [data-testid="stExpander"] summary p{font-size:15px; font-weight:600}
 .st-key-panel [data-testid="stExpander"] summary span{color:inherit}
 .sources{list-style:none; margin:0; padding:0}
