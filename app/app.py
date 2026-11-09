@@ -16,6 +16,7 @@ the CSS finds the panel.
 """
 
 import html
+import os
 import sys
 from pathlib import Path
 
@@ -23,6 +24,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 import streamlit as st  # noqa: E402
+from streamlit.errors import StreamlitSecretNotFoundError  # noqa: E402
 
 from src.ask import ask, load_index  # noqa: E402
 from src.embed import get_client  # noqa: E402
@@ -159,9 +161,24 @@ def load_resources():
     @st.cache_resource is what makes it "once": Streamlit reruns this whole file on every click,
     but a cached function only really runs the first time and returns the saved result after that.
     """
+    use_streamlit_secret()
     co = get_client()
     chunks, vectors = load_index()
     return co, chunks, vectors
+
+
+def use_streamlit_secret():
+    """When deployed on Streamlit Community Cloud, the key lives in the app's Secrets, not in .env.
+
+    Copy it into the environment so get_client() finds it the same way it does locally.
+    Locally there is no secrets file, and st.secrets raises an error, which we ignore.
+    """
+    if os.environ.get("COHERE_API_KEY"):
+        return
+    try:
+        os.environ["COHERE_API_KEY"] = st.secrets["COHERE_API_KEY"]
+    except (KeyError, FileNotFoundError, StreamlitSecretNotFoundError):
+        pass
 
 
 def sources_html(sources):

@@ -9,6 +9,12 @@ data/raw/*
 data/processed/*
 !data/raw/.gitkeep
 !data/processed/.gitkeep
+# ...except the two files the deployed app needs (passages and their vectors, ~50 MB together)
+!data/processed/chunks.jsonl
+!data/processed/embeddings.npy
+
+# Secrets for a local `streamlit run` (on Streamlit Cloud they go in the app's settings)
+.streamlit/secrets.toml
 
 # Editors / OS
 .vscode/

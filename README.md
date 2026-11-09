@@ -81,4 +81,10 @@ Every step has tests (`tests/`) that run without network access or an API key: C
 
 ## Data and licence
 
-Text comes from [English Wikipedia](https://en.wikipedia.org) under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). The downloaded text and the embeddings are **not** stored in this repo; the steps above rebuild them. Every source in the app links back to its Wikipedia page.
+Text comes from [English Wikipedia](https://en.wikipedia.org) under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). Every source in the app links back to its Wikipedia page.
+
+So the deployed app can run without rebuilding anything, the repo includes the finished index: `data/processed/chunks.jsonl` (the 23,582 passages, cut from Wikipedia text) and `data/processed/embeddings.npy` (their vectors). Those two files are shared under the same **CC BY-SA 4.0** licence as the Wikipedia text they come from. The raw downloads and intermediate files are not stored; the steps above rebuild them.
+
+## Deploying
+
+The app runs on [Streamlit Community Cloud](https://share.streamlit.io): main file `app/app.py`, Python 3.12, and one secret, `COHERE_API_KEY = "..."`, added in the app's **Settings → Secrets** (never in the repo).
