@@ -1,6 +1,7 @@
-requests
-pytest
-beautifulsoup4
-# Added in later steps:
-# cohere           (steps 4-5: embed, rerank, chat)
-# streamlit        (step 7: the app)
+requests==2.34.2
+beautifulsoup4==4.15.0
+cohere==7.3.1
+numpy==2.5.4
+python-dotenv==1.2.4
+streamlit==1.67.0
+pytest==9.2.0
