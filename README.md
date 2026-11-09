@@ -2,6 +2,8 @@
 
 **Ask about the beautiful game.** A football question-answering app that answers from Wikipedia and shows the sources behind every answer.
 
+**Try it live: [sabi-ball.streamlit.app](https://sabi-ball.streamlit.app)** (it may take a few seconds to wake up)
+
 *Sabi ball* is Nigerian Pidgin for "to know ball": to really know football.
 
 It is a retrieval-augmented generation (RAG) system: it searches 23,582 passages from 1,201 Wikipedia articles, picks the most relevant ones, and has a language model answer **only** from them. If the passages don't hold the answer, it says so instead of guessing.
